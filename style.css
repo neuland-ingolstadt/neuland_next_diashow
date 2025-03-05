@@ -78,6 +78,7 @@ main > section {
 .progressbar {
     margin: 0px 5px 0px 5px;
     position: relative;
+    overflow: hidden; /* Somit sind die blauen balken runder */
 }
 .progressbar > div {
     background-color: var(--progressbar_background);
