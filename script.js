@@ -2,7 +2,14 @@
 // =======================================================================
 // =======================================================================
 
-const images = [    
+let language = 'de'; // Default festlegen ['de', 'en'] in url: ?lang=en ODER ?language=en
+
+let screenIntervalTime = 90; // [Sekunden]
+
+
+
+
+const neulandNext_images = [    
     {src: "home.png", text_de: "Home", text_en: "Home"},
     {src: "timetable2.png", text_de: "Stundenplan", text_en: "Timetable"},
     {src: "timetable.png", text_de: "Stundenplan", text_en: "Timetable"},
@@ -13,20 +20,19 @@ const images = [
     {src: "roomsearch.png", text_de: "Raumsuche", text_en: "Room Search"},
     // {src: "library.png", text_de: "Bibliothek", text_en: "Library"},
 ];
-
-let language = 'de'; // Default festlegen ['de', 'en'] in url: ?lang=en ODER ?language=en
-
-let intervalTime = 5; // [Sekunden] in url: ?time=5 
-
-const frame = false; // Bilder in iP frame
+const neulandNext_intervalTime = screenIntervalTime / 2 / neulandNext_images.length; // [Sekunden] in url: ?time=5 
+const neulandNext_frame = false; // Bilder in iP frame
 
 
 // Vars
 // =======================================================================
 // =======================================================================
 
-let currentIndex = 0;
-let progressBars;
+let screens = document.querySelectorAll('.screen');
+let screenIndex = 0;
+
+let neulandNext_currentIndex = 0;
+let neulandNext_progressBars;
 
 
 // functions
@@ -34,74 +40,122 @@ let progressBars;
 // =======================================================================
 
 function init() {
-    read_time_from_url();
+    readUrl();
 
-    document.documentElement.style.setProperty('--animation_time', `${intervalTime}s`)
+    screesHideAll();
+    screenToggleCurrent()
+    setInterval(screenBext, screenIntervalTime * 1000);
 
-    if(frame) {document.getElementById('frame_img').style.removeProperty('display');}
 
-    summon_progressbars();
 
-    progressBars = document.querySelectorAll('.progressbar');
+
+    document.documentElement.style.setProperty('--neulandNext_animationTime', `${neulandNext_intervalTime}s`)
+
+    if(neulandNext_frame) {document.getElementById('neulandNext_frameImg').style.removeProperty('display');}
+
+    neulandNext_summonProgressbars();
+
+    neulandNext_progressBars = document.querySelectorAll('.neulandNext_progressbar');
 
     // Startet die Slideshow
-    updateSlideshow();
-    setInterval(updateSlideshow, intervalTime * 1000);
+    neulandNext_updateSlideshow();
+    setInterval(neulandNext_updateSlideshow, neulandNext_intervalTime * 1000);
+
+
 }
 init();
 
 
-function read_time_from_url() {
-    var url_vars = window.location.search.split('?')[1];
-    if(url_vars != undefined){
-        url_vars = url_vars.split("&");
-        for (let index = 0; index < url_vars.length; index++) {
-            if(url_vars[index].split('=')[0] == "time"){
-                intervalTime = url_vars[index].split('=')[1];
+function readUrl() {
+    let urlVars = window.location.search.split('?')[1];
+    if(urlVars != undefined){
+        urlVars = urlVars.split("&");
+        for (let index = 0; index < urlVars.length; index++) {
+            if(urlVars[index].split('=')[0] == "time"){
+                screenIntervalTime = urlVars[index].split('=')[1];
             }
-            if(url_vars[index].split('=')[0] == "lang"){
-                language = url_vars[index].split('=')[1];
+            if(urlVars[index].split('=')[0] == "lang"){
+                language = urlVars[index].split('=')[1];
             }
-            if(url_vars[index].split('=')[0] == "language"){
-                language = url_vars[index].split('=')[1];
+            if(urlVars[index].split('=')[0] == "language"){
+                language = urlVars[index].split('=')[1];
             }
         }
     }
 }
 
-function summon_progressbars() {
-    for (let index = 0; index < images.length; index++) {
-        const code = `<div class="progressbar"> <div> <div></div> </div> </div>`;
-        document.getElementById('progressbar_container').insertAdjacentHTML('beforeend', code);
+function screesHideAll() {
+    screens.forEach((screen) => {
+        screen.style.display = 'none';
+    })
+}
+
+function screenToggleCurrent() {
+    if(screens[screenIndex].style.display == 'none') {
+        screens[screenIndex].style.removeProperty('display');
+    } else {
+        screens[screenIndex].style.display = 'none';
+    }
+}
+function screenIndex_plus() {
+    screenIndex = (screenIndex + 1) % screens.length;
+}
+function screenBext() {
+    screenToggleCurrent()
+    screenIndex_plus();
+    screenToggleCurrent();
+}
+
+
+
+
+
+
+function neulandNext_summonProgressbars() {
+    for (let index = 0; index < neulandNext_images.length; index++) {
+        const code = `<div class="neulandNext_progressbar"> <div> <div></div> </div> </div>`;
+        document.getElementById('neulandNext_progressbarContainer').insertAdjacentHTML('beforeend', code);
     }
 }
 
-function updateSlideshow() {
-    const imageElement = document.getElementById('slideshowimage');
-    const textElement = document.getElementById('imagetext');
+function neulandNext_updateSlideshow() {
+    const imageElement = document.getElementById('neulandNext_slideshowImage');
+    const textElement = document.getElementById('neulandNext_imagetext');
 
     // Setzt das neue Bild und den neuen Text
-    imageElement.src = `imgs/${language}/${images[currentIndex].src}`;
-    textElement.textContent = images[currentIndex][`text_${language}`];
+    imageElement.src = `imgs/${language}/${neulandNext_images[neulandNext_currentIndex].src}`;
+    textElement.textContent = neulandNext_images[neulandNext_currentIndex][`text_${language}`];
 
+    
     // Setzt alle Progress Bars zurück
-    if(currentIndex == 0) {
-        progressBars.forEach((bar, index) => {
-            bar.classList.remove('progressbar_current');
+    if(neulandNext_currentIndex == 0) {
+        neulandNext_progressBars.forEach((bar, index) => {
+            bar.classList.remove('neulandNext_progressbarCurrent');
         });
 
-        void progressBars[0].offsetWidth; // Dies erzwingt einen Reflow und startet die Animation neu
+        void neulandNext_progressBars[0].offsetWidth; // Dies erzwingt einen Reflow und startet die Animation neu
     }
 
     // Aktualisiert die Progress Bars
-    progressBars.forEach((bar, index) => {
-        if(index == currentIndex) {
-            bar.classList.add('progressbar_current');
-        } else if(index > currentIndex) {
-            bar.classList.remove('progressbar_current');
+    neulandNext_progressBars.forEach((bar, index) => {
+        if(index == neulandNext_currentIndex) {
+            bar.classList.add('neulandNext_progressbarCurrent');
+        } else if(index > neulandNext_currentIndex) {
+            bar.classList.remove('neulandNext_progressbarCurrent');
         }
     });
 
     // Erhöht den Index für das nächste Bild
-    currentIndex = (currentIndex + 1) % images.length;
+    neulandNext_currentIndex = (neulandNext_currentIndex + 1) % neulandNext_images.length;
 }
+
+
+document.addEventListener('keydown', (event) => {
+    // console.log(event.key)
+
+    if (!isNaN(Number(event.key))) {
+        screenToggleCurrent()
+        screenIndex = (Number(event.key)) % screens.length;
+        screenToggleCurrent();
+    }
+});

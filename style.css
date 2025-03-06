@@ -1,12 +1,12 @@
 :root {
-    --animation_time: 0s; /* * Wird durch JS gesetzt */
+    --neulandNext_animationTime: 0s; /* * Wird durch JS gesetzt */
     --neuland_blue: #0b83ff;
     --progressbar_background: #ccc;
 
     /* * Zusammen anpassen! Ausporbieren was passt ... */
-    --slideshowimage_maxheight: 750px;
-    --slideshowimage_offset: 4px; /* Nur relevant, wenn in js "const frame = true;" */
-    --slideshowimage_screenshort_borderradius: 20px;
+    --neulandNext_slideshowImage_maxheight: 750px;
+    --neulandNext_slideshowImage_offset: 4px; /* Nur relevant, wenn in js "const frame = true;" */
+    --neulandNext_slideshowImage_screenshort_borderradius: 20px;
 }
 
 
@@ -21,77 +21,77 @@ body {
     align-items: center;
 }
 
-main {
+#screen_neulandNext {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-main > section {
+#screen_neulandNext > section {
     width: 35vw;
     min-width: 500px;
 }
 
-.slideshow_container {
+#screen_neulandNext .neulandNext_slideshowContainer {
     width: 80%;
     margin: 0 auto;
     max-width: 800px;
     padding-top: 50px;
 }
 
-.slideshow {
+#screen_neulandNext .neulandNext_slideshow {
     position: relative;
     margin-bottom: 20px;
 }
 
-#slideshowimage_div > img {
-    max-height: var(--slideshowimage_maxheight);
+#screen_neulandNext #neulandNext_slideshowImage_div > img {
+    max-height: var(--neulandNext_slideshowImage_maxheight);
 }
-#frame_img {
-    max-height: calc(var(--slideshowimage_maxheight) + 2* var(--slideshowimage_offset)) !important;
-    top: calc(var(--slideshowimage_offset) * -1);
+#screen_neulandNext #neulandNext_frameImg {
+    max-height: calc(var(--neulandNext_slideshowImage_maxheight) + 2* var(--neulandNext_slideshowImage_offset)) !important;
+    top: calc(var(--neulandNext_slideshowImage_offset) * -1);
 }
-#slideshowimage {
-    border-radius: var(--slideshowimage_screenshort_borderradius);
+#screen_neulandNext #neulandNext_slideshowImage {
+    border-radius: var(--neulandNext_slideshowImage_screenshort_borderradius);
 }
 
 
-#imagetext {
+#screen_neulandNext #neulandNext_imagetext {
     font-size: 40px;
     margin-top: 10px;
     font-weight: bold;
 }
 
-#progressbar_container {
+#screen_neulandNext #neulandNext_progressbarContainer {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.progressbar, .progressbar > div, .progressbar > div > div {
+#screen_neulandNext .neulandNext_progressbar, .neulandNext_progressbar > div, .neulandNext_progressbar > div > div {
     width: 25px;
     height: 7px;
     border-radius: 5px;
     /* transition: background-color 0.5s ease; */
 }
 
-.progressbar {
+#screen_neulandNext .neulandNext_progressbar {
     margin: 0px 5px 0px 5px;
     position: relative;
     overflow: hidden; /* Somit sind die blauen balken runder */
 }
-.progressbar > div {
+#screen_neulandNext .neulandNext_progressbar > div {
     background-color: var(--progressbar_background);
     position: absolute;
 }
 
-.progressbar > div > div {
+#screen_neulandNext .neulandNext_progressbar > div > div {
     position: absolute;
 }
 
-.progressbar_current > div > div {
+#screen_neulandNext .neulandNext_progressbarCurrent > div > div {
     background-color: var(--neuland_blue) !important;
-    animation: fillAnimation var(--animation_time) linear forwards;
+    animation: fillAnimation var(--neulandNext_animationTime) linear forwards;
 }
 
 @keyframes fillAnimation {
@@ -103,16 +103,16 @@ main > section {
     }
 }
 
-#app_info_imgs > div, #app_info_badge > div {
+#screen_neulandNext #neulandNext_appInfo_imgs > div, #neulandNext_appInfo_badge > div {
     margin: 0px 30px 0px 30px;
 }
 
-#app_info_imgs > div > img {
+#screen_neulandNext #neulandNext_appInfo_imgs > div > img {
     width: 200px;
     height: 200px;
 }
 
-#app_info_imgs > div:nth-child(1) > img {
+#screen_neulandNext #neulandNext_appInfo_imgs > div:nth-child(1) > img {
     border-radius: 50px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
 }
