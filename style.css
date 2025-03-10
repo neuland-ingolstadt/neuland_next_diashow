@@ -152,3 +152,39 @@ h2 {
 ._3d_druck_workshop_imgs_center > div > img {
   width: 50%;
 }
+
+#screen_neuland {
+  background-color: #222225;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.screen_neuland_div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 650px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+.screen_neuland_div > h3 {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.screen_neuland_div > p {
+  text-align: left;
+  font-size: 20px;
+}
+
+#screen_events h3 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+#screen_events p {
+  font-size: 25px;
+  margin: 10px 0px;
+}
