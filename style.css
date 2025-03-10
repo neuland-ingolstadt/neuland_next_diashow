@@ -181,10 +181,11 @@ h2 {
 }
 
 #screen_events h3 {
-  font-size: 35px;
+  font-size: 30px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 #screen_events p {
-  font-size: 25px;
+  font-size: 22px;
   margin: 10px 0px;
 }
