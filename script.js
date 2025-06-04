@@ -3,15 +3,15 @@
 // =======================================================================
 
 const images = [    
-    {src: "home.png", text_de: "Home", text_en: "Home"},
-    {src: "timetable2.png", text_de: "Stundenplan", text_en: "Timetable"},
-    {src: "timetable.png", text_de: "Stundenplan", text_en: "Timetable"},
-    {src: "map.png", text_de: "Karte", text_en: "Map"},
-    {src: "food.png", text_de: "Essen", text_en: "Food"},
-    {src: "news.png", text_de: "News", text_en: "News"},
-    {src: "events.png", text_de: "Events", text_en: "Events"},
-    {src: "roomsearch.png", text_de: "Raumsuche", text_en: "Room Search"},
-    // {src: "library.png", text_de: "Bibliothek", text_en: "Library"},
+    {src: "home.webp", text_de: "Home", text_en: "Home"},
+    {src: "timetable.webp", text_de: "Stundenplan", text_en: "Timetable"},
+    {src: "timetable2.webp", text_de: "Stundenplan", text_en: "Timetable"},
+    {src: "map.webp", text_de: "Karte", text_en: "Map"},
+    {src: "food.webp", text_de: "Essen", text_en: "Food"},
+    {src: "news.webp", text_de: "THI News", text_en: "THI News"},
+    {src: "sports.webp", text_de: "Hochschulsport", text_en: "University Sports"},
+    {src: "roomsearch.webp", text_de: "Raumsuche", text_en: "Room Search"},
+    {src: "dates.webp", text_de: "Semester Termine", text_en: "Semester Dates"},
 ];
 
 let language = 'de'; // Default festlegen ['de', 'en'] in url: ?lang=en ODER ?language=en
