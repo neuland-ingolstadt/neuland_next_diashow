@@ -1,37 +1,28 @@
-// Settings
-// =======================================================================
-// =======================================================================
 
 const images = [    
-    {src: "home.webp", text_de: "Home", text_en: "Home"},
-    {src: "timetable.webp", text_de: "Stundenplan", text_en: "Timetable"},
-    {src: "timetable2.webp", text_de: "Stundenplan", text_en: "Timetable"},
-    {src: "map.webp", text_de: "Karte", text_en: "Map"},
-    {src: "food.webp", text_de: "Essen", text_en: "Food"},
-    {src: "news.webp", text_de: "THI News", text_en: "THI News"},
-    {src: "sports.webp", text_de: "Hochschulsport", text_en: "University Sports"},
-    {src: "roomsearch.webp", text_de: "Raumsuche", text_en: "Room Search"},
-    {src: "dates.webp", text_de: "Semester Termine", text_en: "Semester Dates"},
+    {src: "home_de.webp", text_de: "Home", text_en: "Home"},
+    {src: "timetable_de.webp", text_de: "Stundenplan", text_en: "Timetable"},
+    {src: "timetable2_de.webp", text_de: "Stundenplan", text_en: "Timetable"},
+    {src: "map_de.webp", text_de: "Karte", text_en: "Map"},
+    {src: "food_de.webp", text_de: "Essen", text_en: "Food"},
+    {src: "news_de.webp", text_de: "THI News", text_en: "THI News"},
+    {src: "sports_de.webp", text_de: "Hochschulsport", text_en: "University Sports"},
+    {src: "roomsearch_de.webp", text_de: "Raumsuche", text_en: "Room Search"},
+    {src: "dates_de.webp", text_de: "Semester Termine", text_en: "Semester Dates"},
 ];
 
-let language = 'de'; // Default festlegen ['de', 'en'] in url: ?lang=en ODER ?language=en
+let language = 'de';
 
-let intervalTime = 5; // [Sekunden] in url: ?time=5 
+let intervalTime = 5;
 
-const frame = false; // Bilder in iP frame
+const frame = false;
 
 
-// Vars
-// =======================================================================
-// =======================================================================
 
 let currentIndex = 0;
 let progressBars;
 
 
-// functions
-// =======================================================================
-// =======================================================================
 
 function init() {
     read_time_from_url();
@@ -44,7 +35,6 @@ function init() {
 
     progressBars = document.querySelectorAll('.progressbar');
 
-    // Startet die Slideshow
     updateSlideshow();
     setInterval(updateSlideshow, intervalTime * 1000);
 }
@@ -80,20 +70,17 @@ function updateSlideshow() {
     const imageElement = document.getElementById('slideshowimage');
     const textElement = document.getElementById('imagetext');
 
-    // Setzt das neue Bild und den neuen Text
-    imageElement.src = `imgs/${language}/${images[currentIndex].src}`;
+    imageElement.src = `imgs/${images[currentIndex].src}`;
     textElement.textContent = images[currentIndex][`text_${language}`];
 
-    // Setzt alle Progress Bars zurück
     if(currentIndex == 0) {
-        progressBars.forEach((bar, index) => {
+        progressBars.forEach((bar) => {
             bar.classList.remove('progressbar_current');
         });
 
-        void progressBars[0].offsetWidth; // Dies erzwingt einen Reflow und startet die Animation neu
+        void progressBars[0].offsetWidth;
     }
 
-    // Aktualisiert die Progress Bars
     progressBars.forEach((bar, index) => {
         if(index == currentIndex) {
             bar.classList.add('progressbar_current');
@@ -102,6 +89,5 @@ function updateSlideshow() {
         }
     });
 
-    // Erhöht den Index für das nächste Bild
     currentIndex = (currentIndex + 1) % images.length;
 }
